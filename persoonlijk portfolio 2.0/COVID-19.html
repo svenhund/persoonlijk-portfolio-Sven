@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Covid-19</title>
+    <link rel="icon" href="assets/images/icon.jpg">
+</head>
+
+
+
+<body>
+    <div class="hero-full-container background-image-container white-text-container"
+        style="background-image: url('./assets/images/SI2.jpg')">
+
+        <h1>
+            Covid-19 numbers in the
+            <div id="land"></div>
+        </h1>
+        Datum:
+        <div id="datum"></div>
+        Aantal doden:
+        <div id="aantal doden"></div>
+        Nieuwe doden:
+        <div id="nieuwe doden"></div>
+        Totale besmettingen:
+        <div id="totale besmettingen"></div>
+        Totale doden:
+        <div id="totale doden"></div>
+
+        <script lang="text/javascript">
+            fetch('https://api.covid19api.com/summary')
+                .then(function (resp) { return resp.json() }) // Convert data to json
+                .then(function (data) {
+                    console.log(data);
+                    console.log(data.Countries[122].Country);
+                    console.log(data.Countries[122].TotalDeaths);
+                    document.getElementById("land").innerHTML = (data.Countries[122].Country);
+                    document.getElementById("datum").innerHTML = (data.Countries[122].Date);
+                    document.getElementById("aantal doden").innerHTML = (data.Countries[122].TotalDeaths);
+                    document.getElementById("nieuwe doden").innerHTML = (data.Countries[122].NewDeaths);
+                    document.getElementById("totale besmettingen").innerHTML = (data.Countries[122].TotalConfirmed);
+                    document.getElementById("totale doden").innerHTML = (data.Countries[122].TotalDeaths);
+                })
+                .catch(function () { // catch any errors
+                });
+        </script>
+</body>
+
+</html>
